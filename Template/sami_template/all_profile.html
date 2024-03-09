@@ -1,0 +1,41 @@
+<!-- Update in all_profile.html -->
+
+{% extends 'base.html' %}
+{% block title %}Index Page{% endblock %}
+
+{% block body %}
+
+<div class="row row-cols-1 row-cols-md-4 g-3">
+    {% for human_instance in human %}
+        <div class="col">
+            <div class="card bg-warning" style="height: auto; width: 275px;">
+                <img src="{{ human_instance.image.url }}" alt="{{ human_instance.name }}" class="img-fluid" style="max-width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ human_instance.name }}</h5>
+                    <p class="card-text"><strong>Email:</strong> {{ human_instance.email }}</p>
+                    <p class="card-text"><strong>Age:</strong> {{ human_instance.age }}</p>
+                    <p class="card-text"><strong>Gender:</strong> {{ human_instance.get_gender_display }}</p>
+                    <p class="card-text"><strong>Address:</strong> {{ human_instance.address }}</p>
+
+                    <!-- Additional Information -->
+                    <h6 class="card-subtitle mt-3 mb-2 text-muted">Additional Information</h6>
+                    <p class="card-text"><strong>Education:</strong> {{ human_instance.education }}</p>
+                    <p class="card-text"><strong>Workplace:</strong> {{ human_instance.workplace }}</p>
+                    <p class="card-text"><strong>Skills:</strong> {{ human_instance.skills }}</p>
+                    <p class="card-text"><strong>Father's Name:</strong> {{ human_instance.father_name }}</p>
+                    <p class="card-text"><strong>Mother's Name:</strong> {{ human_instance.mother_name }}</p>
+                    <!-- Add other fields as needed -->
+
+                    <!-- Add Update and Delete buttons -->
+                    <a href="{% url 'update_prof' human_instance.id %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete_prof' human_instance.id %}" class="btn btn-danger">Delete</a>
+                    <!-- Add Download Button -->
+                    <a href="{% url 'download_info' human_instance.id %}" class="btn btn-success">Download Info</a>
+                
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

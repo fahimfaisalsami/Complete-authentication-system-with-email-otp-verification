@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Update Profile{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Update Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Name:</label>
+            <input type="text" name="name" id="id_name" class="form-control" value="{{ human_instance.name }}" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email:</label>
+            <input type="email" name="email" id="id_email" class="form-control" value="{{ human_instance.email }}" required>
+        </div>
+
+        <!-- Age -->
+        <div class="mb-3">
+            <label for="id_age" class="form-label">Age:</label>
+            <input type="number" name="age" id="id_age" class="form-control" value="{{ human_instance.age }}" required>
+        </div>
+
+        <!-- Gender -->
+        <div class="mb-3">
+            <label for="id_gender" class="form-label">Gender:</label>
+            <select name="gender" id="id_gender" class="form-select" required>
+                <option value="Male" {% if human_instance.gender == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if human_instance.gender == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Others" {% if human_instance.gender == 'Others' %}selected{% endif %}>Others</option>
+            </select>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="id_image" class="form-label">Image:</label>
+            <input type="file" name="image" id="id_image" class="form-control" accept="image/*">
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Address:</label>
+            <textarea name="address" id="id_address" class="form-control" required>{{ human_instance.address }}</textarea>
+        </div>
+
+        <label for="id_education">Education:</label>
+<input type="text" name="education" id="id_education" class="form-control" value="{{ human_instance.education }}">
+
+<label for="id_workplace">Workplace:</label>
+<input type="text" name="workplace" id="id_workplace" class="form-control" value="{{ human_instance.workplace }}">
+
+<label for="id_skills">Skills:</label>
+<textarea name="skills" id="id_skills" class="form-control">{{ human_instance.skills }}</textarea>
+
+<label for="id_father_name">Father's Name:</label>
+<input type="text" name="father_name" id="id_father_name" class="form-control" value="{{ human_instance.father_name }}">
+
+<label for="id_mother_name">Mother's Name:</label>
+<input type="text" name="mother_name" id="id_mother_name" class="form-control" value="{{ human_instance.mother_name }}">
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

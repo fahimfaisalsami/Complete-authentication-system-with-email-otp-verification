@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Index Page{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h1>This is Index page</h1>
+    <form method="post" enctype="multipart/form-data" id="myForm">
+        {% csrf_token %}
+
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Name:</label>
+            <input type="text" name="name" id="id_name" class="form-control" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email:</label>
+            <input type="email" name="email" id="id_email" class="form-control" required>
+        </div>
+
+        <!-- Age -->
+        <div class="mb-3">
+            <label for="id_age" class="form-label">Age:</label>
+            <input type="number" name="age" id="id_age" class="form-control" required>
+        </div>
+
+        <!-- Gender -->
+        <div class="mb-3">
+            <label for="id_gender" class="form-label">Gender:</label>
+            <select name="gender" id="id_gender" class="form-select" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="id_image" class="form-label">Image:</label>
+            <input type="file" name="image" id="id_image" class="form-control" accept="image/*" required>
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Address:</label>
+            <textarea name="address" id="id_address" class="form-control" required></textarea>
+        </div>
+
+        <!-- Education -->
+        <div class="mb-3">
+            <label for="id_education" class="form-label">Education:</label>
+            <input type="text" name="education" id="id_education" class="form-control">
+        </div>
+
+        <!-- Workplace -->
+        <div class="mb-3">
+            <label for="id_workplace" class="form-label">Workplace:</label>
+            <input type="text" name="workplace" id="id_workplace" class="form-control">
+        </div>
+
+        <!-- Skills -->
+        <div class="mb-3">
+            <label for="id_skills" class="form-label">Skills:</label>
+            <textarea name="skills" id="id_skills" class="form-control"></textarea>
+        </div>
+
+        <!-- Father's Name -->
+        <div class="mb-3">
+            <label for="id_father_name" class="form-label">Father's Name:</label>
+            <input type="text" name="father_name" id="id_father_name" class="form-control">
+        </div>
+
+        <!-- Mother's Name -->
+        <div class="mb-3">
+            <label for="id_mother_name" class="form-label">Mother's Name:</label>
+            <input type="text" name="mother_name" id="id_mother_name" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("myForm").addEventListener("reset", function(event){
+        event.preventDefault(); // prevent the reset button from actually resetting the form
+        document.getElementById("id_name").value = ""; // clear each input field by setting its value to an empty string
+        document.getElementById("id_email").value = "";
+        document.getElementById("id_age").value = "";
+        document.getElementById("id_gender").value = "";
+        document.getElementById("id_address").value = "";
+        document.getElementById("id_education").value = "";
+        document.getElementById("id_workplace").value = "";
+        document.getElementById("id_skills").value = "";
+        document.getElementById("id_father_name").value = "";
+        document.getElementById("id_mother_name").value = "";
+    });
+</script>
+
+{% endblock %}
